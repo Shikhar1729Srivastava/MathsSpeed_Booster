@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Master Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app-container">
+    <!-- SETUP SCREEN -->
+    <div id="setup-screen">
+        <!-- Inside <div id="setup-screen"> -->
+<div class="field">
+    <label>Seconds per Question</label>
+    <input type="number" id="time-select" value="10" min="3" max="60">
+</div>
+
+        <h1>Math Practice</h1>
+        <div class="field">
+            <label>Operation</label>
+            <select id="op-select">
+                <option value="mixed">Mixed (+, -, *, /)</option>
+                <option value="+">Addition (+)</option>
+                <option value="-">Subtraction (-)</option>
+                <option value="*">Multiplication (*)</option>
+                <option value="/">Division (/)</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Starting Digits (1-5)</label>
+            <input type="number" id="level-select" value="1" min="1" max="5">
+        </div>
+        <button id="start-btn" onclick="startGame()">Start Practice</button>
+    </div>
+
+   <!-- GAME SCREEN (Hidden by default) -->
+<div id="game-screen" style="display: none;">
+    <div class="header">
+        <span>Level: <b id="level-display">1</b></span>
+        <span>Score: <b id="score-display">0</b></span>
+        <!-- New Mute Button -->
+        <button id="mute-btn" onclick="toggleMute()" style="width:auto; background:none; color:#64748b; border:none; cursor:pointer; font-size:1.2rem;">🔊</button>
+    </div>
+    
+    <!-- New Timer Bar -->
+    <div id="timer-bar" style="background: #e2e8f0; height: 8px; border-radius: 4px; margin: 15px 0; overflow: hidden;">
+        <div id="timer-progress" style="background: #3b82f6; height: 100%; width: 100%; transition: width 0.1s linear;"></div>
+    </div>
+
+    <div id="problem-box">? + ?</div>
+    
+    <input type="number" id="answer-input" placeholder="Enter answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <button class="secondary" onclick="resetGame()">Change Settings</button>
+    
+    <div id="message"></div>
+</div>
+
+
+</div>
+<!-- Correct these lines at the bottom of index.html -->
+<audio id="sound-correct" src="correct.mp3"></audio>
+<audio id="sound-wrong" src="wrong.mp3"></audio>
+<script src="script.js"></script>
+
+</body>
+</html>
