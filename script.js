@@ -5,6 +5,7 @@ if ('serviceWorker' in navigator) {
             .catch((err) => console.log('Service Worker registration failed:', err));
     });
 }
+
 // 1. Core Game Variables
 let currentLevel = 1;
 let score = 0;
@@ -12,7 +13,7 @@ let correctAnswer;
 let chosenOp = 'mixed';
 
 // 2. Timer & Sound Variables (Fixed)
-let timePerQuestion = 10; 
+let timePerQuestion = 10;
 let timeLeft;
 let timerInterval;
 let isMuted = false;
@@ -24,11 +25,11 @@ function startGame() {
     chosenOp = document.getElementById('op-select').value;
     timePerQuestion = parseInt(document.getElementById('time-select').value) || 10;
     score = 0;
-    
+
     // Switch Screens
     document.getElementById('setup-screen').style.display = 'none';
     document.getElementById('game-screen').style.display = 'block';
-    
+
     updateDisplay();
     nextProblem();
 }
@@ -37,10 +38,10 @@ function startGame() {
 function nextProblem() {
     const min = Math.pow(10, currentLevel - 1);
     const max = Math.pow(10, currentLevel) - 1;
-    
+
     let n1 = Math.floor(Math.random() * (max - min + 1)) + min;
     let n2 = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     let op = chosenOp;
     if (op === 'mixed') {
         const ops = ['+', '-', '*', '/'];
@@ -62,7 +63,7 @@ function nextProblem() {
     document.getElementById('answer-input').value = "";
     document.getElementById('answer-input').focus();
     document.getElementById('message').innerText = "";
-    
+
     startTimer(); // Start the countdown
 }
 
@@ -78,7 +79,7 @@ function checkAnswer() {
         score += 10;
         msg.innerText = "Correct! 🌟";
         msg.style.color = "#10b981";
-        
+
         if (score % 50 === 0) {
             currentLevel++;
             msg.innerText = "Level Up! Difficulty increased.";
@@ -98,7 +99,7 @@ function startTimer() {
     clearInterval(timerInterval);
     timeLeft = timePerQuestion;
     const progress = document.getElementById('timer-progress');
-    
+
     timerInterval = setInterval(() => {
         timeLeft -= 0.1;
         progress.style.width = (timeLeft / timePerQuestion * 100) + "%";
