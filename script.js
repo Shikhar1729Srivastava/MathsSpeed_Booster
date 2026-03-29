@@ -1,3 +1,10 @@
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service_worker_file.js')
+            .then((reg) => console.log('Service Worker Registered!', reg))
+            .catch((err) => console.log('Service Worker registration failed:', err));
+    });
+}
 // 1. Core Game Variables
 let currentLevel = 1;
 let score = 0;
